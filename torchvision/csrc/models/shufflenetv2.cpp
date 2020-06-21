@@ -7,7 +7,7 @@ namespace models {
 
 using Options = torch::nn::Conv2dOptions;
 
-torch::Tensor channel_shuffle(torch::Tensor x, int64_t groups) {
+torch::Tensor _channel_shuffle(torch::Tensor x, int64_t groups) {
   auto shape = x.sizes();
   auto batchsize = shape[0];
   auto num_channels = shape[1];
@@ -80,7 +80,7 @@ struct ShuffleNetV2InvertedResidualImpl : torch::nn::Module {
     } else
       out = torch::cat({branch1->forward(x), branch2->forward(x)}, 1);
 
-    out = channel_shuffle(out, 2);
+    out = _channel_shuffle(out, 2);
     return out;
   }
 };
