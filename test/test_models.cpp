@@ -1,7 +1,7 @@
 #include <torch/script.h>
 #include <torch/torch.h>
 #include <iostream>
-
+#include <pybind11/pybind11.h>
 #include "../torchvision/csrc/models/models.h"
 
 using namespace vision::models;
